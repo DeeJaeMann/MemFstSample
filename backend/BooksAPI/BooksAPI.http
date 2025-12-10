@@ -1,0 +1,21 @@
+@BooksAPI_HostAddress = https://localhost:7243
+
+### GetAllUsers
+
+GET {{BooksAPI_HostAddress}}/users/
+Accept: application/json
+
+### GetUserByName
+
+GET {{BooksAPI_HostAddress}}/users/username/rachel/
+Accept: application/json
+
+### GetUserById
+
+GET {{BooksAPI_HostAddress}}/users/id/1/
+Accept: application/json
+
+### GetAllBooks
+
+GET {{BooksAPI_HostAddress}}/books/
+Accept: application/json

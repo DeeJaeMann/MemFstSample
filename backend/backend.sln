@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSeeder", "DataSeeder\DataSeeder.csproj", "{9BF3F50F-D4A7-452F-8AEA-C9BE96069579}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksAPI", "BooksAPI\BooksAPI.csproj", "{3E9BEA8F-8C07-498E-BDA5-7296BDD63FEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{9BF3F50F-D4A7-452F-8AEA-C9BE96069579}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BF3F50F-D4A7-452F-8AEA-C9BE96069579}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BF3F50F-D4A7-452F-8AEA-C9BE96069579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E9BEA8F-8C07-498E-BDA5-7296BDD63FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E9BEA8F-8C07-498E-BDA5-7296BDD63FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E9BEA8F-8C07-498E-BDA5-7296BDD63FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E9BEA8F-8C07-498E-BDA5-7296BDD63FEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
