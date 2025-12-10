@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "username": "alice",
+    "favorite_book_id" : 4
+  },
+  {
+    "id": 2,
+    "username": "bob",
+    "favorite_book_id": 9
+  },
+  {
+    "id": 3,
+    "username": "steve",
+    "favorite_book_id": 7
+  },
+  {
+    "id": 4,
+    "username": "carol",
+    "favorite_book_id": 5
+  },
+  {
+    "id": 5,
+    "username": "rachel",
+    "favorite_book_id": 6
+  }
+]

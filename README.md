@@ -16,9 +16,18 @@ A client has asked for a new feature that allows a user to select their favorite
 
 # Design Choices
  - Predefined list generated from .json
- - Book Fields
+  - Helper project to populate PostgreSQL
+ - Book Table
+  - ID
   - Title
   - Author(s)
-  - UserList (Favorite) - Add but not delete
- - Favorite Indication?
- - User Name entry
+  - UserList (Favorite) - Add but not delete - foreign key
+ - User Table
+  - ID
+  - UserName
+  - FavoriteBookId - foreign key
+ - Favorite Indication
+
+ # Database Notes
+  - When setting up PostgreSQL for ASP.NET, ensure host type connection methods are set to md5 in pg_hba.conf - in the event they are set to peer by default
+  - Default connection string has been stored in secrets
