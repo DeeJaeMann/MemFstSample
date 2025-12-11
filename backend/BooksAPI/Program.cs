@@ -136,7 +136,49 @@ app.MapGet("/books", async () =>
     return Results.Ok(books);
 }).WithName("GetAllBooks");
 
+// Set favorite book by id
+app.MapPatch("/users/fav/{id}", async (int id, FavoriteBookUpdate update) =>
+{
+    await using var conn = new NpgsqlConnection(connString);
+    await conn.OpenAsync();
+
+    const string query = @"
+        UPDATE users
+        SET favorite_book_id =  @favorite_book_id
+        WHERE id = @id;";
+    await using var command = new NpgsqlCommand(query, conn);
+    command.Parameters.AddWithValue("id", id);
+    command.Parameters.AddWithValue("favorite_book_id", update.favorite_book_id);
+    
+    int rowsAffected = await command.ExecuteNonQueryAsync();
+
+    if (rowsAffected is 0) return Results.NotFound();
+    return Results.Ok();
+}).WithName("UpdateUserFavoriteBook");
+
+// Add a user to a book list
+app.MapPost("/user_books", async (UserBooksUpdate update) =>
+{
+    await using var conn = new NpgsqlConnection(connString);
+    await conn.OpenAsync();
+
+    const string query = @"
+            INSERT INTO user_books (user_id, book_id)
+            VALUES (@user_id, @book_id);";
+    await using var command = new NpgsqlCommand(query, conn);
+    command.Parameters.AddWithValue("user_id", update.user_id);
+    command.Parameters.AddWithValue("book_id", update.book_id);
+
+    int rowsAffected = await command.ExecuteNonQueryAsync();
+
+    if (rowsAffected is 0) return Results.BadRequest("Could not add user to book list.");
+    return Results.Created($"/user_books/{update.user_id}-{update.book_id}", update);
+}).WithName("AddUserToBookList");
+
 app.Run();
 
 public record User(int Id, string Username, int? FavoriteBookId);
 public record Book(int Id, string Title, string Authors, List<string> Users);
+
+public record FavoriteBookUpdate(int favorite_book_id);
+public record UserBooksUpdate(int user_id, int book_id);

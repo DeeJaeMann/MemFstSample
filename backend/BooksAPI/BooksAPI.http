@@ -19,3 +19,20 @@ Accept: application/json
 
 GET {{BooksAPI_HostAddress}}/books/
 Accept: application/json
+
+### UpdateUserFavoriteBook
+PATCH {{BooksAPI_HostAddress}}/users/fav/1/
+Content-Type: application/json
+
+{
+    "favorite_book_id": 2
+}
+
+### AddUserToBookList
+POST {{BooksAPI_HostAddress}}/user_books/
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "book_id": 10
+}
