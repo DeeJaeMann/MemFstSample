@@ -57,3 +57,16 @@ nunit-*.xml
 .idea/
 *.DotSettings.user
 *.sln.iml
+
+# React & Vite
+node_modules/
+dist/
+build/
+.env
+.env.*
+!.env.example
+coverage/
+*.log
+playwright-report/
+.DS_Store
+Thumbs.db
