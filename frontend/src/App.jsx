@@ -10,19 +10,23 @@ function App() {
       <div>
         <h1>Welcome</h1>
 
-        <h2>Users</h2>
-        <ul>
-          {users.map(user => (
-              <li key={user.id}>{user.username}</li>
-          ))}
-        </ul>
-
+        <section>
         <h2>Books</h2>
-        <ul>
+        <div>
           {books.map(book => (
-              <li key={book.id}>{book.title} by {book.authors}</li>
+              <article key={book.id}>
+                <h3><cite>{book.title}</cite></h3>
+                Author(s): {book.authors}<br />
+                User(s):
+                <ul>
+                  {book.users.map(user => (
+                      <li key={user}>{user}</li>
+                  ))}
+                </ul>
+              </article>
           ))}
-        </ul>
+        </div>
+        </section>
       </div>
     </>
   )
