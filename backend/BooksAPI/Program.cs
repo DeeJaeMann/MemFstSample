@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
+using BooksAPI.Models;
 
 var config = new ConfigurationBuilder()
     // Non-sensitive settings
@@ -177,8 +178,7 @@ app.MapPost("/user_books", async (UserBooksUpdate update) =>
 
 app.Run();
 
-public record User(int Id, string Username, int? FavoriteBookId);
-public record Book(int Id, string Title, string Authors, List<string> Users);
 
-public record FavoriteBookUpdate(int favorite_book_id);
-public record UserBooksUpdate(int user_id, int book_id);
+
+
+
