@@ -1,15 +1,28 @@
 import { useState } from 'react'
 import { useLoaderData } from "react-router-dom";
+import UserLogin from "./components/UserLogin";
 import './App.css'
 
 function App() {
-  const { users, books } = useLoaderData();
+  const { books, users } = useLoaderData();
+  const [currentUser, setCurrentUser] = useState(null);
 
   return (
     <>
+      <div className="container mt-5">
+        {!currentUser && (
+            <UserLogin
+                onLogin={(user) => setCurrentUser(user)}
+                users={users}
+            />
+        )}
+        {currentUser && (
+          <div>
+            <h1>Welcome, {currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1)}</h1>
+            <button className="btn btn-secondary mt-3" onClick={() => setCurrentUser(null)}>Logout</button>
+          </div>
+        )}
       <div>
-        <h1>Welcome</h1>
-
         <section>
         <h2>Books</h2>
         <div>
@@ -27,6 +40,7 @@ function App() {
           ))}
         </div>
         </section>
+      </div>
       </div>
     </>
   )

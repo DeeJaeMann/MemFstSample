@@ -1,14 +1,25 @@
 // loaders/rootLoader.js
 import axios from "axios";
 
-export async function rootLoader() {
-    const [userResponse, booksResponse] = await Promise.all([
-        axios.get("http://localhost:5015/users"),
-        axios.get("http://localhost:5015/books"),
-    ]);
+async function rootLoader() {
+    try {
+        const [ booksResponse, usersResponse ] = await Promise.all([
+            axios.get("http://localhost:5015/books"),
+            axios.get("http://localhost:5015/users"),
+        ]);
 
-    return {
-        users: userResponse.data,
-        books: booksResponse.data,
-    };
+        return {
+            books: booksResponse.data,
+            users: usersResponse.data,
+        };
+    } catch (error) {
+        console.error(error.message);
+        return{
+            books: [],
+            users: [],
+        };
+    }
+
 }
+
+export default rootLoader;
