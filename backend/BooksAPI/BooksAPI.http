@@ -36,3 +36,11 @@ Content-Type: application/json
   "user_id": 1,
   "book_id": 3
 }
+
+### CreateUser
+POST {{BooksAPI_HostAddress}}/users/new/
+Content-Type: application/json
+
+{
+  "username": "peter"
+}

@@ -51,7 +51,7 @@ try
         DROP TABLE IF EXISTS users CASCADE;
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
-            username TEXT NOT NULL,
+            username VARCHAR(30) UNIQUE NOT NULL,
             favorite_book_id INT REFERENCES books(id));", conn))
     {
         command.ExecuteNonQuery();
@@ -66,6 +66,10 @@ try
         command.Parameters.AddWithValue("favorite_book_id", user.favorite_book_id);
         command.ExecuteNonQuery();
     }
+    
+    // Update the serial number in postgres
+    using (var command = new NpgsqlCommand("SELECT setval('users_id_seq', (SELECT MAX(id) FROM users));", conn))
+        command.ExecuteNonQuery();
     
     // Drop users_books table and create a new one
     // This table is for the relationships between users and book ids selected

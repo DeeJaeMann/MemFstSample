@@ -101,5 +101,21 @@ public static class UsersEndpoints
             if (rowsAffected is 0) return Results.NotFound();
             return Results.Ok();
         }).WithName("UpdateUserFavoriteBook");
+        
+        // Add new user by name
+        app.MapPost("/users/new", async (NewUser user) =>
+        {
+            await using var conn = new NpgsqlConnection(connString);
+            await conn.OpenAsync();
+            
+            const string query = @"INSERT INTO users (username) VALUES (@username) RETURNING id;";
+            await using var command = new NpgsqlCommand(query, conn);
+            command.Parameters.AddWithValue("username", user.username);
+            var newId = (int)await command.ExecuteScalarAsync();
+
+            var createdUser = new User(Id: newId, Username: user.username, FavoriteBookId: null);
+            
+            return Results.Created($"/users/{newId}", createdUser);
+        }).WithName("CreateUser");
     }
 }
