@@ -1,6 +1,6 @@
 namespace BooksAPI.Models;
 
 public record User(
-    int Id, 
-    string Username, 
-    int? FavoriteBookId);
+    int id, 
+    string username, 
+    int? favorite_book_id);

@@ -113,7 +113,7 @@ public static class UsersEndpoints
             command.Parameters.AddWithValue("username", user.username);
             var newId = (int)await command.ExecuteScalarAsync();
 
-            var createdUser = new User(Id: newId, Username: user.username, FavoriteBookId: null);
+            var createdUser = new User(id: newId, username: user.username, favorite_book_id: null);
             
             return Results.Created($"/users/{newId}", createdUser);
         }).WithName("CreateUser");
