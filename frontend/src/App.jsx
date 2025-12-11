@@ -9,6 +9,7 @@ function App() {
   const [books, setBooks] = useState(initialBooks);
   const [currentUser, setCurrentUser] = useState(null);
 
+  // Handles changing the current favorite_book_id value
   const handleSetFavorite = async (bookId) => {
     if (!currentUser) return;
 
@@ -27,6 +28,7 @@ function App() {
     }
   }
 
+  // Handles adding a user and book to the user_books table
   const handleAddUserToBook = async (bookId) => {
     if (!currentUser) return;
 
@@ -36,7 +38,7 @@ function App() {
         user_id: currentUser.id,
       });
 
-      // refresh books from backend
+      // refresh books from backend and update state to trigger refresh
       const response = await axios.get("http://localhost:5015/books");
       setBooks(response.data);
     } catch (error) {
