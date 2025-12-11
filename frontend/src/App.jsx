@@ -70,7 +70,9 @@ function App() {
             // check if currentUser is in the list
             const isUserInBookList = currentUser && book.users.includes(currentUser.username);
             return (
-                <article key={book.id}>
+                <article
+                    key={book.id}
+                    className="card mb-3 p-3">
                   <h3><cite>{book.title}</cite></h3>
                   Author(s): {book.authors}<br/>
                   <button
@@ -94,10 +96,10 @@ function App() {
                       </button>
                   )}
                   <br/>
-                  User(s):
+                  Total User(s): {book.users.length}
                   <ul>
                     {book.users.map(user => (
-                        <li key={user}>{user}</li>
+                        <li key={user}>{user.charAt(0).toUpperCase() + user.slice(1)}</li>
                     ))}
                   </ul>
 
